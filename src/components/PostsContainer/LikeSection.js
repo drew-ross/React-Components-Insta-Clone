@@ -4,7 +4,7 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment, faHeart, faThumbsUp } from '@fortawesome/free-regular-svg-icons'
-
+import { Heart, FullHeart } from '../../assets/Vectors'
 const LikeSection = props => {
   const { postId, setLikesData, likesData } = props
 
@@ -31,7 +31,8 @@ const LikeSection = props => {
         key="likes-icons-container"
       >
         <div className="like-section-wrapper">
-          <FontAwesomeIcon onClick={addLike} icon={likesData[postId][1] ? faThumbsUp : faHeart} />
+          {/* <FontAwesomeIcon onClick={addLike} icon={likesData[postId][1] ? faThumbsUp : faHeart} /> */}
+          <div onClick={addLike}>{likesData[postId][1] ? <FullHeart /> : <Heart />}</div>
         </div>
         <div className="like-section-wrapper">
           <FontAwesomeIcon icon={faComment} />
