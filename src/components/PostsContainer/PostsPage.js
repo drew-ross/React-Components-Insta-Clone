@@ -5,11 +5,15 @@ import Post from "./Post";
 import "./Posts.css";
 // import data 
 
-const PostsPage = () => {
+const PostsPage = (props) => {
   // set up state for your data
+
+  const { post } = props;
+
   return (
     <div className="posts-container-wrapper">
       {/* map through data here to return a Post and pass data as props to Post */}
+      
     </div>
   );
 };
