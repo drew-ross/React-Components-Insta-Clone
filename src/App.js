@@ -14,16 +14,21 @@ import PostsPage from './components/PostsContainer/PostsPage';
 
 const App = () => {
 
-  const posts = data;
+  const postsData = data;
+
+  const [posts, setPosts] = useState(postsData)
+
   const likesDataInitial = posts.map(post => {
     return [post.likes, false]
   });
+
   const [likesData, setLikesData] = useState(likesDataInitial);
+  
 
   return (
     <div className="App">
       {/* Add imported components here to render them */}
-      <SearchBarContainer />
+      <SearchBarContainer postsData={postsData} setPosts={setPosts} />
       {
         posts.map((post, key) => {
           return <PostsPage key={key} postId={key} post={post} likesData={likesData} setLikesData={setLikesData} />
