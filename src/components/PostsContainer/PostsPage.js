@@ -8,12 +8,11 @@ import "./Posts.css";
 const PostsPage = (props) => {
   // set up state for your data
 
-  const { post } = props;
-
+  const { postId, post, likesData, setLikesData } = props;
   return (
     <div className="posts-container-wrapper">
       {/* map through data here to return a Post and pass data as props to Post */}
-      <Post post={post} />
+      <Post postId={postId} post={post} likesData={likesData} setLikesData={setLikesData}/>
     </div>
   );
 };
