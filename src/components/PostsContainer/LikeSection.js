@@ -3,9 +3,27 @@
 // HINT: You will need to add an onClick event pass through your props and update the hard coded Likes
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faComment, faHeart } from '@fortawesome/free-regular-svg-icons'
-
+import { faComment, faHeart, faThumbsUp } from '@fortawesome/free-regular-svg-icons'
+import { Heart, FullHeart } from '../../assets/Vectors'
 const LikeSection = props => {
+  const { postId, setLikesData, likesData } = props
+
+  const addLike = () => {
+
+    const newLikesData = likesData.map((post, id) => {
+      let likeNum = 1;
+      if (post[1]) {
+        likeNum = -1;
+      }
+      if (id === postId) {
+        return [post[0] + likeNum, !post[1]];
+      } else {
+        return post;
+      }
+    })
+    setLikesData(newLikesData);
+  }
+
   return (
     <div>
       <div
@@ -13,13 +31,14 @@ const LikeSection = props => {
         key="likes-icons-container"
       >
         <div className="like-section-wrapper">
-          <FontAwesomeIcon icon={faHeart} />
+          {/* <FontAwesomeIcon onClick={addLike} icon={likesData[postId][1] ? faThumbsUp : faHeart} /> */}
+          <div onClick={addLike}>{likesData[postId][1] ? <FullHeart /> : <Heart />}</div>
         </div>
         <div className="like-section-wrapper">
           <FontAwesomeIcon icon={faComment} />
         </div>
       </div>
-      <p className="like-number">27 likes</p>
+      <p className="like-number">{likesData[postId][0]} likes</p>
     </div>
   )
 };

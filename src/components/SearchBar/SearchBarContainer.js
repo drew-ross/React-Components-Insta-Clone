@@ -5,7 +5,18 @@ import { faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { faHeart, faCircle, faCompass } from '@fortawesome/free-regular-svg-icons'
 import "./SearchBar.css";
 
-const SearchBar = () => {
+const SearchBar = (props) => {
+
+  const { postsData, setPosts } = props;
+
+  const searchFilter = (event) => {
+    if(!event.target.value) {
+      setPosts(postsData);
+    } else {
+      setPosts(postsData.filter(post => post.username.toLowerCase().includes(event.target.value.toLowerCase())));
+    }
+  }
+
   return (
     <div className="search-bar-wrapper">
       <div className="social">
@@ -13,6 +24,7 @@ const SearchBar = () => {
       </div>
       <form className="search-form">
         <input
+          onChange={searchFilter}
           type="text"
           placeholder="Search"
         />
